@@ -4,18 +4,11 @@ from infra.users.users import Users
 app = Blueprint('users',__name__,url_prefix='/user')
 print(__name__)
 
-
-
-@app.route('/',methods=['POST','GET'])
-def root():
-    print('00000')
-    return '------\n'
-
 @app.route('/add/<string:user_name>',methods=['POST','GET'])
 def add_user(user_name):
-    u = Users(**{'user_name':user_name})
-    user = u.add()
-    return jsonify(user)
+    u = Users({'user_name':user_name})
+    result = u.add()
+    return jsonify(result)
 
 @app.route('/update',methods=['POST'])
 def update_user():
